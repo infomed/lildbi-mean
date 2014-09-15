@@ -115,6 +115,10 @@ module.exports = function (MeanUser, app, auth, database, passport) {
     app.route('/users')
         .get(users.all);
 
+
+    app.route('/users/add')
+        .get(users.add);
+
     // Finish with setting up the articleId param
    // app.param('articleId', articles.article);
 

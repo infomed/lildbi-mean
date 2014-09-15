@@ -251,3 +251,27 @@ exports.all = function(req, res) {
 
     });
 };
+
+
+exports.add = function(req, res) {
+//Preuba luego borrar todo esto
+    var user1 = {
+        name: 'Full name',
+        email: 'tegsdgfsdasdafsdfadgfasdfafst@teasdfasdfasdfdsfast.com',
+        username: 'teresa',
+        roles: ["Adasdfaministratorsadf", "Edifasdfasdfator"],
+        password: 'password',
+        provider: 'local'
+    };
+
+    var user = new User(user1);
+    user.save(function(err) {
+          if (err) {
+              return res.json(500, {
+                  error: 'Cannot list the users'
+              });
+          }
+          res.json(user);
+    });
+
+};

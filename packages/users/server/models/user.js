@@ -15,6 +15,17 @@ var validatePresenceOf = function (value) {
     return (this.provider && this.provider !== 'local') || (value && value.length);
 };
 
+
+var validateRoles = function (value) {
+    for (var i = 0; i < value.length; i++) {
+        if((value[i] !== "Administrator") && (value[i] !== "Documentalist") && (value[i] !== "Editor")){
+            return false;
+        }
+    }
+    return true;
+};
+
+
 var validateUniqueEmail = function (value, callback) {
     var User = mongoose.model('User');
     User.find({
@@ -47,7 +58,8 @@ var UserSchema = new Schema({
         default: Date.now
     },
     name: {
-        type: String
+        type: String,
+        required: true
     },
     username: {
         type: String,
@@ -69,7 +81,7 @@ var UserSchema = new Schema({
     },
     roles: {
         type: Array,
-        default: ['authenticated']
+        validate: [validateRoles, "Roles doesn't match"]
     },
     hashed_password: {
         type: String,
