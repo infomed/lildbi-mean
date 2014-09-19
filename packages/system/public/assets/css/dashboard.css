@@ -2,11 +2,6 @@
  * Base structure
  */
 
-/* Move down content because we have a fixed navbar that is 50px tall */
-body {
-  padding-top: 50px;
-}
-
 
 /*
  * Global add-ons
@@ -15,6 +10,10 @@ body {
 .sub-header {
   padding-bottom: 10px;
   border-bottom: 1px solid #eee;
+}
+
+.page-header {
+    margin-top: 0px;
 }
 
 
@@ -41,6 +40,7 @@ body {
     border-right: 1px solid #eee;
   }
 }
+
 
 /* Sidebar navigation */
 .nav-sidebar {

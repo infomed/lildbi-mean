@@ -20,7 +20,7 @@ MeanUser.register(function(app, auth, passport, database) {
    MeanUser.menus.add({
        title: 'Users',
        link: 'users',
-       roles: ['authenticated'],
+       roles: ['administrator'],
        menu: 'main'
   });
 

@@ -32,5 +32,8 @@ module.exports = {
   },
 
   // The session cookie name
-  sessionName: 'connect.sid'
+  sessionName: 'connect.sid',
+
+  //Roles
+   roles: ['authenticated', 'administrator', 'editor', 'documentalist']
 };

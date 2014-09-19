@@ -257,21 +257,31 @@ exports.add = function(req, res) {
 //Preuba luego borrar todo esto
     var user1 = {
         name: 'Full name',
-        email: 'tegsdgfsdasdafsdfadgfasdfafst@teasdfasdfasdfdsfast.com',
+        email: 'cadsfdfsdavfdavsrlos@infomed.sld.cu',
         username: 'teresa',
-        roles: ["Adasdfaministratorsadf", "Edifasdfasdfator"],
         password: 'password',
         provider: 'local'
     };
 
     var user = new User(user1);
     user.save(function(err) {
-          if (err) {
-              return res.json(500, {
-                  error: 'Cannot list the users'
-              });
-          }
-          res.json(user);
+        if (err) {
+            var modelErrors = [];
+
+            if (err.errors) {
+                for (var x in err.errors) {
+                    modelErrors.push({
+                        param: x,
+                        msg: err.errors[x].message,
+                        value: err.errors[x].value
+                    });
+                }
+                res.status(400).send(modelErrors);
+            }
+            return res.status(400);
+        }
+
+        res.json(user);
     });
 
 };

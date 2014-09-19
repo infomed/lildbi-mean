@@ -5,6 +5,7 @@
  */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
+    config = require('meanio').loadConfig(),
     crypto = require('crypto');
 
 /**
@@ -17,12 +18,19 @@ var validatePresenceOf = function (value) {
 
 
 var validateRoles = function (value) {
-    for (var i = 0; i < value.length; i++) {
-        if((value[i] !== "Administrator") && (value[i] !== "Documentalist") && (value[i] !== "Editor")){
-            return false;
-        }
+    var roles = config.roles;
+    var result = null;
+
+    if (roles.length >= value.length){
+        result = value.filter(function (e) {
+            if (roles.indexOf(e) !== -1) return true;
+        });
     }
-    return true;
+
+    if (result.length == value.length)
+        return true;
+    else
+        return false;
 };
 
 
@@ -81,6 +89,7 @@ var UserSchema = new Schema({
     },
     roles: {
         type: Array,
+        default: ['authenticated'],
         validate: [validateRoles, "Roles doesn't match"]
     },
     hashed_password: {

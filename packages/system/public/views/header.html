@@ -31,6 +31,11 @@
                     {{global.user.name}} <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
+                    <li><a data-ng-href="#!/users/profile">Profile</a>
+                    </li>
+                    <li data-ng-show="global.user.roles.length > 1" data-ng-repeat="rol in global.user.roles">
+                        <a data-ng-href="#!/admin">{{rol}}</a>
+                    </li>
                     <li><a href="/logout">Sign out</a>
                     </li>
                 </ul>
